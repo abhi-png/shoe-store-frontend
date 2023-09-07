@@ -1,2 +1,2 @@
 # Developer Details
-- Abinash Kar
+- Abinash Kar ()
