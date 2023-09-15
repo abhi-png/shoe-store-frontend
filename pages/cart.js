@@ -8,9 +8,7 @@ import { useSelector } from "react-redux";
 import { makePaymentRequest } from "@/utils/api";
 import { loadStripe } from "@stripe/stripe-js";
 
-const stripePromise = loadStripe(
-   process.env.NEXT_PUBLIC_STRAPI_PUBLISHABLE_KEY
-);
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHSHABLE_KEY);
 
 const Cart = () => {
    const [loading, setLoading] = useState(false);
@@ -18,7 +16,7 @@ const Cart = () => {
 
    const subTotal = useMemo(() => {
       return cartItems.reduce(
-         (total, val) => total + val.attributes.price,0
+         (total, val) => total + val.attributes.price, 0
       );
    }, [cartItems]);
 
@@ -30,7 +28,7 @@ const Cart = () => {
             products: cartItems,
          });
          await stripe.redirectToCheckout({
-            sessionId: res.stripeSession.id,
+            sessionId: res.stripeSession.id
          });
       } catch (error) {
          setLoading(false);
